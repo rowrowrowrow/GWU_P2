@@ -209,9 +209,3 @@ file_path = 'WorldBankFertilityModel.h5'
 # Export the model to a HDF5 file
 nn.save(file_path)
 
-
-# In[19]:
-
-
-X_train.columns.tolist()
-
