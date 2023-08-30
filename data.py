@@ -182,22 +182,22 @@ nn.compile(loss="mean_squared_error", optimizer="adam", metrics=["mse"])
 fit_model = nn.fit(X_train, y_train, epochs=25)
 
 
-# In[15]:
+# In[25]:
 
 
-# Evaluate the model loss and accuracy metrics using the evaluate method and the test data
-model_loss, model_accuracy = nn.evaluate(X_test,y_test,verbose=2)
+# Evaluate the model loss and mse metrics using the evaluate method and the test data
+model_loss, model_accuracy = nn.evaluate(X_test, y_test, verbose=2)
 
 # Display the model loss and accuracy results
-print(f"Loss: {model_loss}, Accuracy: {model_accuracy}")
+print(f"Loss: {model_loss}, Accuracy: {1 - model_accuracy}")
 
 
-# In[16]:
+# In[24]:
 
 
 plt.plot(fit_model.history["loss"])
-plt.title("loss_function")
-plt.legend(["1 hidden layer"])
+plt.title("DNN Mean Square Error per Epoch")
+plt.legend(["MSE"])
 plt.show()
 
 
