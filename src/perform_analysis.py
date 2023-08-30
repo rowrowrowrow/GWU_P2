@@ -4,6 +4,7 @@ import numpy as np
 from pathlib import Path
 from joblib import load
 from src.get_country_data_grouped import get_country_data_grouped
+from IPython.display import HTML
 
 model_path = Path("./WorldBankFertilityModel.h5")
 scaler_path = Path("./scaler.joblib")
@@ -61,8 +62,11 @@ def perform_analysis(country_code, series, year, value):
     df_final_original_unscaled_prediction = scaler.inverse_transform(df_original_scaled)[0][series_index_original]
     df_final_new_unscaled_prediction = scaler.inverse_transform(df_new_scaled)[0][series_index_new]
     
-    return f'''
-    The real fertility rate {real_y},
-    The model's predicted rate {df_final_original_unscaled_prediction},
-    The model's predicted rate given a value of {value} for series code {series}: {df_final_new_unscaled_prediction}
-    '''
+    
+    html = '<ul>'
+    html += f"<li>The real fertility rate: <strong>{real_y}</strong></li>"
+    html += f"<li>The model's predicted rate with real data: <strong>{df_final_original_unscaled_prediction}</strong></li>"
+    html += f"<li>The model's predicted rate given a value of {value} for series code {series}: <strong>{df_final_new_unscaled_prediction}</strong></li>"
+    html += "</ul>"
+    html = HTML(html)
+    return html
