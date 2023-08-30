@@ -5,7 +5,14 @@ from src.perform_analysis import perform_analysis
 from src.get_country_data import get_country_data
 from ipywidgets import interact_manual, FloatText, Select
 
+country_code_value = None
+series_value = None
+years_value = None
+    
 def run():
+    global country_code_value
+    global series_value
+    global years_value
     """The main function for running the script."""
 
     category_options = get_country_list()
@@ -30,15 +37,15 @@ def run():
     
     series_value = series.value
     
-    years = Select(
+    year = Select(
         value=years_options[-1],
         options=years_options,
         description='Year:',
     )
     
-    years_value = years.value
+    years_value = year.value
     
-    initial_value = get_country_data(country_code.value, series.value, years.value)
+    initial_value = get_country_data(country_code.value, series.value, year.value)
     
     value = FloatText(
         value=initial_value,
@@ -73,9 +80,9 @@ def run():
         
     country_code.observe(update_category, names='value')
     series.observe(update_series, names='value')
-    years.observe(update_year, names='value')
+    year.observe(update_year, names='value')
 
-    out = interact_manual(perform_analysis, country_code=country_code, series=series, years=years, value=value)
+    out = interact_manual(perform_analysis, country_code=country_code, series=series, year=year, value=value)
     
     return out
    
