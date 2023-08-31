@@ -2,6 +2,8 @@
 
 This repo demonstrates using python visualization tools, machine learning, and analysis for demographic information to inform financial decisions in a web page.
 
+More information regarding the development, approach, and goals of this project can be found in the powerpoint presentation included in this repo `GWU P2 Presentation.pptx`.
+
 ---
 
 ## Technologies
